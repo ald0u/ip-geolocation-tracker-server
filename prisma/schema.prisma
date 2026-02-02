@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model IP {
+  id          String   @id @default(uuid())
+  ip          String   @unique @db.VarChar(45)
+  country     String   @db.VarChar(100)
+  city        String   @db.VarChar(100)
+  latitude    Float
+  longitude   Float
+  isp         String   @db.VarChar(25)
+  threatLevel String   @default("Unknown") @db.VarChar(50)
+  createdAt   DateTime @default(now())
+
+  @@index([ip])
+  @@index([createdAt])
+  @@map("ips")
+}
