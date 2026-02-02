@@ -57,8 +57,8 @@ const startServer = async () => {
       const info = {
         port: PORT,
         env: process.env.NODE_ENV,
-        health: http://localhost:/health,
-        base: http://localhost:/api/ips,
+        health: `http://localhost:${PORT}/health`,
+        base: `http://localhost:${PORT}/api/ips`,
       };
       console.table(info);
     });
@@ -69,3 +69,4 @@ const startServer = async () => {
 };
 
 startServer();
+
